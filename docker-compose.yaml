@@ -1,0 +1,40 @@
+services:
+  driver-assignment:
+    build: ./driver-assignment
+    ports:
+      - "9000:9000"
+    networks:
+      - app-network
+    environment:
+      - PORT=9000
+
+  invoice-generation:
+    build: ./invoice-generation
+    ports:
+      - "9001:9001"
+    networks:
+      - app-network
+    environment:
+      - PORT=9001
+
+  route-optimization:
+    build: ./route-optimization
+    ports:
+      - "9002:9002"
+    networks:
+      - app-network
+    environment:
+      - PORT=9002
+
+  trip-management:
+    build: ./trip-management
+    ports:
+      - "9003:9003"
+    networks:
+      - app-network
+    environment:
+      - PORT=9003
+
+networks:
+  app-network:
+    driver: bridge
