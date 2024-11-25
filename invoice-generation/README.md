@@ -1,4 +1,4 @@
-# REBU Ride Trip Management App
+# REBU Ride Invoice Generation App
 
 This is a backend app. It should be written in JS / Python (you may use any framework you like).
 

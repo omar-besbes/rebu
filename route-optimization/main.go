@@ -28,7 +28,7 @@ func main() {
 	router := gin.Default()
 
 	// Define endpoints
-	router.GET(bestRouteURL, func(c *gin.Context) {
+	router.POST(bestRouteURL, func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"type": "best_route",
 			"rider": gin.H{
@@ -41,7 +41,7 @@ func main() {
 		})
 	})
 
-	router.GET(closestRouteURL, func(c *gin.Context) {
+	router.POST(closestRouteURL, func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"type": "closest_available_rider",
 			"rider": gin.H{

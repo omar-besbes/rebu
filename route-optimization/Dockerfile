@@ -12,5 +12,8 @@ RUN go mod tidy
 # Copy the rest of the application
 COPY . .
 
+# Compile app
+RUN go build
+
 # Command to run the app
-CMD ["go", "run", "main.go"]
+CMD ["./route-optimization"]

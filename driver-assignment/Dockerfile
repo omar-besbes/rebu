@@ -8,11 +8,10 @@ WORKDIR /app
 COPY requirements.txt .
 
 # Create and activate virtual environment, install dependencies
-RUN python3 -m venv venv
-RUN ./venv/bin/pip install -r requirements.txt
+RUN pip3 install -r requirements.txt
 
 # Copy the rest of the application
 COPY . .
 
 # Command to run the app
-CMD ["./venv/bin/uvicorn", "main:app", "--reload"]
+CMD ["python3", "main.py"]

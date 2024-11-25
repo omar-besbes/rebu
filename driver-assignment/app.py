@@ -31,11 +31,12 @@ async def request_ride():
     "customer_location": "LocCustomer",
     "customer_destination": "LocDestination"
   }
-  rider_response = requests.post(f"{ROUTE_OPTIMIZATION_URL}", json=rider_request).json()
+  rider_response = requests.post(f"{ROUTE_OPTIMIZATION_URL}/route/closest", json=rider_request).json()
   route_request = rider_response.copy()
   route_request["type"] = "calculate_best_route"
+  print("Closest identified")
 
-  best_route_response = requests.post(f"{ROUTE_OPTIMIZATION_URL}", json=route_request).json()
+  best_route_response = requests.post(f"{ROUTE_OPTIMIZATION_URL}/route/best", json=route_request).json()
 
   return {
     "type": "available_ride",
@@ -62,6 +63,6 @@ async def approve_ride():
     "route": ["Step1", "Step2"]
   }
 
-  trip_response = requests.post(f"{TRIP_MANAGEMENT_URL}", json=trip_data)
+  trip_response = requests.post(f"{TRIP_MANAGEMENT_URL}/trip/begin", json=trip_data)
 
   return customer_response
