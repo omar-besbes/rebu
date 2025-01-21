@@ -27,7 +27,12 @@ run-all:
 	go run main.go & echo $$! > route-optimization.pid
 	@echo "Running trip-management..."
 	cd trip-management; \
-	./venv/bin/uvicorn main:app --reload & echo $$! > trip-management.pid
+	./venv/bin/python main.py & echo $$! > trip-management.pid
 	@echo "All applications started in the background
+
+kill-all:
+	rm **/*.pid
+	for port in 9000 9001 9002 9003; do fuser -k "$$port"/tcp; done
+	@echo "All applications killed in the background
 
 

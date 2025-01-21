@@ -13,35 +13,18 @@ app = FastAPI(
   description="Driver Assignment Service",
   version="0.1"
 )
-
+  
 @app.post("/ride/request")
 async def request_ride():
-  rider_request = {
-    "type": "find_closest_available_rider",
-    "available_riders": [
-      {
-        "name": "Rider1", 
-        "location": "Loc1"
-      }, 
-      {
-        "name": "Rider2",
-        "location": "Loc2"
-      }
-    ],
-    "customer_location": "LocCustomer",
-    "customer_destination": "LocDestination"
-  }
-  rider_response = requests.post(f"{ROUTE_OPTIMIZATION_URL}/route/closest", json=rider_request).json()
-  route_request = rider_response.copy()
-  route_request["type"] = "calculate_best_route"
-  print("Closest identified")
-
-  best_route_response = requests.post(f"{ROUTE_OPTIMIZATION_URL}/route/best", json=route_request).json()
+  print("Request for a ride ... Searching for available riders")
 
   return {
-    "type": "available_ride",
-    "duration": "10 mins",
-    "route": best_route_response["route"]
+    "type": "available_rider",
+    "time_until_arrival_to_location": "10 mins",
+    "rider": {
+      "name":     "John Doe",
+			"location": "Point A",
+    }
   }
 
 

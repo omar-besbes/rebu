@@ -29,6 +29,8 @@ func main() {
 
 	// Define endpoints
 	router.POST(bestRouteURL, func(c *gin.Context) {
+		log.Printf("Calculating best route ...")
+
 		c.JSON(200, gin.H{
 			"type": "best_route",
 			"rider": gin.H{

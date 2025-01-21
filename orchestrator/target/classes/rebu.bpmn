@@ -135,7 +135,21 @@
       <bpmn:incoming>Flow_0seic3t</bpmn:incoming>
       <bpmn:outgoing>Flow_05j264d</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_0mplbrm" name="Manage trip process" camunda:expression="true">
+    <bpmn:serviceTask id="Activity_0mplbrm" name="Manage trip process">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="url">http://localhost:9010/trip-management/trip/begin</camunda:inputParameter>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Accept">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0bz5obb</bpmn:incoming>
       <bpmn:outgoing>Flow_0wssrn5</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -184,8 +198,8 @@
     <bpmn:sequenceFlow id="Flow_1yvp4ju" sourceRef="Activity_0j4qkca" targetRef="Activity_0u902ph" />
     <bpmn:sequenceFlow id="Flow_1qya8cu" sourceRef="Activity_0u902ph" targetRef="Activity_05k38u6" />
     <bpmn:sequenceFlow id="Flow_0exx7ov" sourceRef="Activity_05k38u6" targetRef="Gateway_1ou8jzn" />
-    <bpmn:sequenceFlow id="Flow_15qkmw6" sourceRef="Gateway_1ou8jzn" targetRef="Activity_18ooljl" />
-    <bpmn:sequenceFlow id="Flow_0tiizpu" sourceRef="Gateway_1ou8jzn" targetRef="Event_0zil1yf" />
+    <bpmn:sequenceFlow id="Flow_15qkmw6" name="no" sourceRef="Gateway_1ou8jzn" targetRef="Activity_18ooljl" />
+    <bpmn:sequenceFlow id="Flow_0tiizpu" name="yes" sourceRef="Gateway_1ou8jzn" targetRef="Event_0zil1yf" />
     <bpmn:sequenceFlow id="Flow_0g6t9by" sourceRef="Activity_18ooljl" targetRef="Activity_1sshg8o" />
     <bpmn:sequenceFlow id="Flow_03t8n75" sourceRef="Activity_1sshg8o" targetRef="Event_047znj4" />
   </bpmn:process>
@@ -381,11 +395,17 @@
       <bpmndi:BPMNEdge id="Flow_15qkmw6_di" bpmnElement="Flow_15qkmw6">
         <di:waypoint x="1015" y="590" />
         <di:waypoint x="1080" y="590" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1041" y="572" width="13" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0tiizpu_di" bpmnElement="Flow_0tiizpu">
         <di:waypoint x="990" y="615" />
         <di:waypoint x="990" y="700" />
         <di:waypoint x="1112" y="700" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="996" y="655" width="18" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0g6t9by_di" bpmnElement="Flow_0g6t9by">
         <di:waypoint x="1180" y="590" />

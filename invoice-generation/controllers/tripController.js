@@ -1,5 +1,7 @@
 exports.calculateCost = (req, res) => {
-    const soapResponse = `
+  console.log("Preparing bill ...");
+
+  const soapResponse = `
     <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
       <Body>
         <TripCalculateCost>
@@ -20,5 +22,5 @@ exports.calculateCost = (req, res) => {
       </Body>
     </Envelope>`;
 
-    res.type('text/xml').send(soapResponse);
+  res.type("text/xml").send(soapResponse);
 };
